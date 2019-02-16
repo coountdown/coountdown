@@ -180,6 +180,11 @@ any-observable@^0.3.0:
   resolved "https://registry.yarnpkg.com/any-observable/-/any-observable-0.3.0.tgz#af933475e5806a67d0d7df090dd5e8bef65d119b"
   integrity sha512-/FQM1EDkTsf63Ub2C6O7GuYFDsSXUwsaZDurV0np41ocwq0jthUAYCmhBX9f+KwlaCgIuWyr/4WlUQUBfKfZog==
 
+app-root-path@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/app-root-path/-/app-root-path-2.1.0.tgz#98bf6599327ecea199309866e8140368fd2e646a"
+  integrity sha1-mL9lmTJ+zqGZMJhm6BQDaP0uZGo=
+
 argparse@^1.0.7:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/argparse/-/argparse-1.0.10.tgz#bcd6791ea5ae09725e17e5ad988134cd40b3d911"
@@ -1012,6 +1017,14 @@ cosmiconfig@^5.0.2, cosmiconfig@^5.0.7:
     js-yaml "^3.9.0"
     parse-json "^4.0.0"
 
+cross-spawn@^4.0.0:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-4.0.2.tgz#7b9247621c23adfdd3856004a823cbe397424d41"
+  integrity sha1-e5JHYhwjrf3ThWAEqCPL45dCTUE=
+  dependencies:
+    lru-cache "^4.0.1"
+    which "^1.2.9"
+
 cross-spawn@^6.0.0, cross-spawn@^6.0.5:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
@@ -1088,6 +1101,11 @@ deep-is@~0.1.3:
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
   integrity sha1-s2nW+128E+7PUk+RsHD+7cNXzzQ=
 
+default-shell@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/default-shell/-/default-shell-1.0.1.tgz#752304bddc6174f49eb29cb988feea0b8813c8bc"
+  integrity sha1-dSMEvdxhdPSespy5iP7qC4gTyLw=
+
 define-properties@^1.1.2, define-properties@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/define-properties/-/define-properties-1.1.3.tgz#cf88da6cbee26fe6db7094f61d870cbd84cee9f1"
@@ -1149,6 +1167,11 @@ doctrine@^2.1.0:
   dependencies:
     esutils "^2.0.2"
 
+dotenv@6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
+  integrity sha512-HygQCKUBSFl8wKQZBSemMywRWcEDNidvNbjGVyZu3nbZ8qq9ubiPoGLMdRDpfSrpkkm9BXYFkpKxxFX38o/76w==
+
 ecc-jsbn@~0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.2.tgz#3a83a904e54353287874c564b7549386849a98c9"
@@ -1177,10 +1200,28 @@ electron-is-dev@^1.0.1:
   resolved "https://registry.yarnpkg.com/electron-is-dev/-/electron-is-dev-1.0.1.tgz#6e0a184736fe7aea77d18210b0b0f6a02402c4bc"
   integrity sha512-iwM3EotA9HTXqMGpQRkR/kT8OZqBbdfHTnlwcxsjSLYqY8svvsq0MuujsWCn3/vtgRmDv/PC/gKUUpoZvi5C1w==
 
+electron-log@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/electron-log/-/electron-log-3.0.1.tgz#5c60913e8ae1a8645560eea8b3c47c60d101e797"
+  integrity sha512-bomFcrYvkEXj0H00T5GjBee50TBA/VwdoDFpPQ2jz3LDGi+4wKF3xrB+N1qXiZYoqDeaK5lNRAkNsHKmXeCPfg==
+
+electron-positioner@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/electron-positioner/-/electron-positioner-3.0.1.tgz#e699400c2d634ad19352cf20202e92b92b96accb"
+  integrity sha512-zQsnNzJB2PY6KEcGFXAoW6iIKtZ+3nbpVozKN7jhdRdRHMFpEpGufwcfrKhnEBBwrfHpyFQgU+p5jkteLIV+Jg==
+
 electron-to-chromium@^1.3.47:
   version "1.3.113"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.113.tgz#b1ccf619df7295aea17bc6951dc689632629e4a9"
   integrity sha512-De+lPAxEcpxvqPTyZAXELNpRZXABRxf+uL/rSykstQhzj/B0l1150G/ExIIxKc16lI89Hgz81J0BHAcbTqK49g==
+
+electron-util@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/electron-util/-/electron-util-0.11.0.tgz#d9b71692241598a5f1e2a6866adf7e1589b783fa"
+  integrity sha512-zfFeBdeBgnKQqXUC4ozmcGqbN5bxSVWH82FZ2Ydpo9PPOen77MAFGrd8+KEloUW36bpuSuMYCtlcp4xejWfKjw==
+  dependencies:
+    electron-is-dev "^1.0.1"
+    new-github-issue-url "^0.2.0"
 
 electron@^4.0.5:
   version "4.0.5"
@@ -1410,6 +1451,19 @@ esutils@^2.0.2:
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
   integrity sha1-Cr9PHKpbyx96nYrMbepPqqBLrJs=
 
+execa@^0.5.0:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/execa/-/execa-0.5.1.tgz#de3fb85cb8d6e91c85bcbceb164581785cb57b36"
+  integrity sha1-3j+4XLjW6RyFvLzrFkWBeFy1ezY=
+  dependencies:
+    cross-spawn "^4.0.0"
+    get-stream "^2.2.0"
+    is-stream "^1.1.0"
+    npm-run-path "^2.0.0"
+    p-finally "^1.0.0"
+    signal-exit "^3.0.0"
+    strip-eof "^1.0.0"
+
 execa@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/execa/-/execa-1.0.0.tgz#c6236a5bb4df6d6f15e88e7f017798216749ddd8"
@@ -1450,6 +1504,11 @@ extend-shallow@^3.0.0, extend-shallow@^3.0.2:
   dependencies:
     assign-symbols "^1.0.0"
     is-extendable "^1.0.1"
+
+extend@^2.0.0:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/extend/-/extend-2.0.2.tgz#1b74985400171b85554894459c978de6ef453ab7"
+  integrity sha512-AgFD4VU+lVLP6vjnlNfF7OeInLTyeyckCNPEsuxz1vi786UuK/nk6ynPuhn/h+Ju9++TQyr5EpLRI14fc1QtTQ==
 
 extend@~3.0.2:
   version "3.0.2"
@@ -1586,6 +1645,13 @@ find-up@^3.0.0:
   dependencies:
     locate-path "^3.0.0"
 
+fix-path@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/fix-path/-/fix-path-2.1.0.tgz#72ece739de9af4bd63fd02da23e9a70c619b4c38"
+  integrity sha1-cuznOd6a9L1j/QLaI+mnDGGbTDg=
+  dependencies:
+    shell-path "^2.0.0"
+
 flat-cache@^1.2.1:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/flat-cache/-/flat-cache-1.3.4.tgz#2c2ef77525cc2929007dfffa1dd314aa9c9dee6f"
@@ -1674,6 +1740,14 @@ get-stdin@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-6.0.0.tgz#9e09bf712b360ab9225e812048f71fde9c89657b"
   integrity sha512-jp4tHawyV7+fkkSKyvjuLZswblUtz+SQKzSWnBbii16BuZksJlU1wuBYXY75r+duh/llF1ur6oNwi+2ZzjKZ7g==
+
+get-stream@^2.2.0:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-2.3.1.tgz#5f38f93f346009666ee0150a054167f91bdd95de"
+  integrity sha1-Xzj5PzRgCWZu4BUKBUFn+Rvdld4=
+  dependencies:
+    object-assign "^4.0.1"
+    pinkie-promise "^2.0.0"
 
 get-stream@^4.0.0:
   version "4.1.0"
@@ -2420,6 +2494,14 @@ loud-rejection@^1.0.0:
     currently-unhandled "^0.4.1"
     signal-exit "^3.0.0"
 
+lru-cache@^4.0.1:
+  version "4.1.5"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-4.1.5.tgz#8bbe50ea85bed59bc9e33dcab8235ee9bcf443cd"
+  integrity sha512-sWZlbEP2OsHNkXrMl5GYk/jKk70MBng6UU4YI/qGDYbgf6YbP4EvmqISbXCoJiRKs+1bSpFHVgQxvJ17F2li5g==
+  dependencies:
+    pseudomap "^1.0.2"
+    yallist "^2.1.2"
+
 map-cache@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/map-cache/-/map-cache-0.2.2.tgz#c32abd0bd6525d9b051645bb4f26ac5dc98a0dbf"
@@ -2443,6 +2525,14 @@ matcher@^1.0.0:
   integrity sha512-+BmqxWIubKTRKNWx/ahnCkk3mG8m7OturVlqq6HiojGJTd5hVYbgZm6WzcYPCoB+KBT4Vd6R7WSRG2OADNaCjg==
   dependencies:
     escape-string-regexp "^1.0.4"
+
+menubar@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/menubar/-/menubar-5.2.3.tgz#8f2761597b4a0ee87edf04a87d8aab1aac2c44e9"
+  integrity sha1-jydhWXtKDuh+3wSofYqrGqwsROk=
+  dependencies:
+    electron-positioner "^3.0.0"
+    extend "^2.0.0"
 
 meow@^3.1.0:
   version "3.7.0"
@@ -2564,6 +2654,11 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
+
+new-github-issue-url@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/new-github-issue-url/-/new-github-issue-url-0.2.0.tgz#41263fa3b9e2d96b29252100fd1ef18274c12a74"
+  integrity sha512-LtOjIk0xghnMVjndjfF9JLc1WIDNmgCAfDtvPMsMJcecBMDziaYOyXkwR8Tgli2ZA2mAOP/6C8DpBq+uCmU5aQ==
 
 nice-try@^1.0.4:
   version "1.0.5"
@@ -2952,6 +3047,11 @@ property-expr@^1.5.0:
   resolved "https://registry.yarnpkg.com/property-expr/-/property-expr-1.5.1.tgz#22e8706894a0c8e28d58735804f6ba3a3673314f"
   integrity sha512-CGuc0VUTGthpJXL36ydB6jnbyOf/rAHFvmVrJlH+Rg0DqqLFQGAP6hIaxD/G0OAmBJPhXDHuEJigrp0e0wFV6g==
 
+pseudomap@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
+  integrity sha1-8FKijacOYYkX7wqKw0wa5aaChrM=
+
 psl@^1.1.24:
   version "1.1.31"
   resolved "https://registry.yarnpkg.com/psl/-/psl-1.1.31.tgz#e9aa86d0101b5b105cbe93ac6b784cd547276184"
@@ -3306,6 +3406,22 @@ shebang-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
   integrity sha1-2kL0l0DAtC2yypcoVxyxkMmO/qM=
+
+shell-env@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/shell-env/-/shell-env-0.3.0.tgz#2250339022989165bda4eb7bf383afeaaa92dc34"
+  integrity sha1-IlAzkCKYkWW9pOt784Ov6qqS3DQ=
+  dependencies:
+    default-shell "^1.0.0"
+    execa "^0.5.0"
+    strip-ansi "^3.0.0"
+
+shell-path@^2.0.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/shell-path/-/shell-path-2.1.0.tgz#ea7d06ae1070874a1bac5c65bb9bdd62e4f67a38"
+  integrity sha1-6n0GrhBwh0obrFxlu5vdYuT2ejg=
+  dependencies:
+    shell-env "^0.3.0"
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
@@ -3830,6 +3946,11 @@ xtend@~2.1.1:
   integrity sha1-bv7MKk2tjmlixJAbM3znuoe10os=
   dependencies:
     object-keys "~0.4.0"
+
+yallist@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
+  integrity sha1-HBH5IY8HYImkfdUS+TxmmaaoHVI=
 
 yauzl@2.4.1:
   version "2.4.1"
