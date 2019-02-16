@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+  const { ipcRenderer } = require('electron')
+
+  const checkOnlineStatus = () => {
+    ipcRenderer.send('online-status-changed', navigator.onLine ? 'online' : 'offline')
+  }
+
+  window.addEventListener('online',  checkOnlineStatus)
+  window.addEventListener('offline',  checkOnlineStatus)
+
+  checkOnlineStatus()
+</script>
+</body>
+</html>
