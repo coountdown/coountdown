@@ -40,7 +40,12 @@ module.exports = {
         label: 'Log out',
         type: 'normal',
         click() {
-          window.webContents.send('logout');
+          try {
+            window.webContents.send('logout');
+            mixpanel.track(app, 'Log out')
+          } catch (err) {
+            Sentry.captureException(err)
+          }
         },
       })
     }
