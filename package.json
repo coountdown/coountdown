@@ -37,6 +37,18 @@
     "semi": false,
     "singleQuote": true
   },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "scripts": {
     "start": "electron .",
     "format": "prettier --write 'main/**/*.{js,json}'",
