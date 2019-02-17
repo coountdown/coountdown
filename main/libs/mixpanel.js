@@ -48,7 +48,7 @@ module.exports = {
     const currentMachineId = await machineId()
     mixpanel.people.set(currentMachineId, { user_id: userId })
   },
-  increment: async (session) => {
+  updateTotalSession: async (session) => {
     const currentMachineId = await machineId()
     mixpanel.people.increment(currentMachineId, 'total_session', session)
   },
