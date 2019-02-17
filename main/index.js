@@ -27,6 +27,7 @@ console.log(`APP: ${config.APP_URL}`)
 
 // Constants
 let onlineStatusWindow
+let twitterLoginWindow
 let tray
 let isQuit = false
 let loggedIn = false
@@ -109,6 +110,38 @@ app.on('ready', async () => {
       mixpanel.addUserId(args.loggedIn)
       alreadyGetUser = true
     }
+  })
+
+  ipcMain.on('open-twitter-window', (event, args) => {
+    if (twitterLoginWindow) {
+      twitterLoginWindow.show()
+      return
+    }
+
+    twitterLoginWindow = new BrowserWindow({
+      width: 1200,
+      height: 500,
+      webPreferences: {
+        devTools: isDev,
+      },
+    })
+
+    twitterLoginWindow.on('closed', () => {
+      twitterLoginWindow = null
+    })
+
+    twitterLoginWindow.loadURL(args.link)
+  })
+
+  ipcMain.on('login-success', () => {
+    menubar.window.loadURL(config.APP_URL)
+    try {
+      twitterLoginWindow.destroy()
+      twitterLoginWindow = null
+    } catch (err) {
+      Sentry.captureException(err)
+    }
+    menubar.window.show()
   })
 })
 
