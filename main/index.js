@@ -12,7 +12,6 @@ const { setupSentry } = require('./libs/sentry')
 const mixpanel = require('./libs/mixpanel')
 const menubarLib = require('./libs/menubar')
 const trayMenu = require('./libs/trayMenu')
-const dialog = require('./libs/dialog')
 
 // Setup env before require config file
 require('dotenv').config()
@@ -31,6 +30,7 @@ let onlineStatusWindow
 let tray
 let isQuit = false
 let loggedIn = false
+let alreadyGetUser = false
 const appLaunchTime = moment()
 
 setupSentry(app)
@@ -94,6 +94,10 @@ app.on('ready', async () => {
   tray.on('click', onTrayClick)
   tray.on('right-click', onTrayRightClick)
 
+  ipcMain.on('logout-success', () => {
+    alreadyGetUser = false
+  })
+
   ipcMain.on('show-menu', () => {
     trayMenu.getDefault(menubar.window, loggedIn, app).popup(tray.window)
     mixpanel.track(app, 'Menu: Show Setting')
@@ -101,6 +105,10 @@ app.on('ready', async () => {
 
   ipcMain.on('loggedIn', (event, args) => {
     loggedIn = args.status
+    if (args.loggedIn && args.status && !alreadyGetUser) {
+      mixpanel.addUserId(args.loggedIn)
+      alreadyGetUser = true
+    }
   })
 })
 
@@ -109,6 +117,8 @@ app.on('before-quit', (event) => {
     const appQuitTime = moment();
     const durationTime = appQuitTime.diff(appLaunchTime)
     const sessionTimeMinutes = moment.duration(durationTime).asMinutes()
+
+    mixpanel.updateTotalSession(sessionTimeMinutes)
 
     event.preventDefault()
     isQuit = true
