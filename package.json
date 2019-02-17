@@ -4,10 +4,15 @@
   "version": "1.0.0",
   "description": "Coountdown for macOS",
   "main": "main/index.js",
-  "repository": "https://github.com/vistriter/coountdown.git",
-  "author": "vistriter <vistriter@gmail.com>",
+  "repository": "https://github.com/coountdown/coountdown.git",
+  "author": {
+    "name": "Coountdown",
+    "email": "coountdown@gmail.com"
+  },
   "license": "MIT",
-  "private": true,
+  "contributors": [
+    "vistriter <vistriter@gmail.com>"
+  ],
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "babel-preset-env": "^1.7.0",
@@ -74,5 +79,6 @@
     "format": "prettier --write 'main/**/*.{js,json}'",
     "format-lint": "./node_modules/eslint/bin/eslint.js . --fix",
     "build": "build"
+    
   }
 }
