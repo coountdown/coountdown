@@ -10,7 +10,9 @@ const moment = require('moment')
 
 const { setupSentry } = require('./libs/sentry')
 const mixpanel = require('./libs/mixpanel')
-const menubar = require('./libs/menubar')
+const menubarLib = require('./libs/menubar')
+const trayMenu = require('./libs/trayMenu')
+const dialog = require('./libs/dialog')
 
 // Setup env before require config file
 require('dotenv').config()
@@ -21,7 +23,8 @@ fixPath()
 
 // Announcement for development
 console.log(`On ${isDev ? 'development' : 'production'} mode.`)
-console.log(`Frontend: ${config.FRONTEND_URL}`)
+console.log(`WEB: ${config.WEB_URL}`)
+console.log(`APP: ${config.APP_URL}`)
 
 // Constants
 let onlineStatusWindow
@@ -46,17 +49,15 @@ app.on('ready', async () => {
     show: false,
   })
 
-  onlineStatusWindow.loadURL(
-    `file://${resolveRootPath('./main/static/pages/online-status.html')}`,
-  )
+  onlineStatusWindow.loadURL(`file://${resolveRootPath('./main/static/pages/online-status.html')}`)
 
+  // Update internet connection
   ipcMain.on('online-status-changed', (event, status) => {
     console.log(`connection: ${status.toUpperCase()}`)
     process.env.CONNECTION = status
   })
 
   electronUtil.enforceMacOSAppLocation()
-
   mixpanel.track(app, 'Launch App')
 
   try {
@@ -67,10 +68,32 @@ app.on('ready', async () => {
   }
 
   // Must have Tray
-  menubar(tray, app)
+  const menubar = menubarLib(tray, app)
 
   console.log('App Ready')
   console.log('Launch on', appLaunchTime.format('LLL'))
+  dialog.openAboutDialog()
+
+  const onTrayRightClick = (event) => {
+    // Toggle window
+    if (menubar.window.isVisible()) {
+      menubar.window.hide()
+      return
+    }
+
+    event.preventDefault()
+    tray.popUpContextMenu(trayMenu.getDefault(menubar.window, false, app))
+    tray.setHighlightMode('selection')
+  }
+
+  const onTrayClick = (event) => {
+    if (event.ctrlKey) {
+      onTrayRightClick(event)
+    }
+  }
+
+  tray.on('click', onTrayClick)
+  tray.on('right-click', onTrayRightClick)
 })
 
 app.on('before-quit', (event) => {

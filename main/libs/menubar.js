@@ -6,7 +6,7 @@ const config = require('../../config')
 module.exports = (tray, app) => {
   const mb = menubar({
     tray,
-    index: config.FRONTEND_URL,
+    index: config.APP_URL,
     height: 600,
     width: 400,
     movable: false,
