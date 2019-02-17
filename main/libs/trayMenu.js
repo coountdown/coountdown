@@ -35,6 +35,16 @@ module.exports = {
       },
     ]
 
+    if (loggedIn) {
+      menuTemplate.splice(3, 0, {
+        label: 'Log out',
+        type: 'normal',
+        click() {
+          window.webContents.send('logout');
+        },
+      })
+    }
+
     return Menu.buildFromTemplate(menuTemplate)
   },
 }

@@ -30,6 +30,7 @@ console.log(`APP: ${config.APP_URL}`)
 let onlineStatusWindow
 let tray
 let isQuit = false
+let loggedIn = false
 const appLaunchTime = moment()
 
 setupSentry(app)
@@ -72,8 +73,6 @@ app.on('ready', async () => {
 
   console.log('App Ready')
   console.log('Launch on', appLaunchTime.format('LLL'))
-  dialog.openAboutDialog()
-
   const onTrayRightClick = (event) => {
     // Toggle window
     if (menubar.window.isVisible()) {
@@ -82,7 +81,7 @@ app.on('ready', async () => {
     }
 
     event.preventDefault()
-    tray.popUpContextMenu(trayMenu.getDefault(menubar.window, false, app))
+    tray.popUpContextMenu(trayMenu.getDefault(menubar.window, loggedIn, app))
     tray.setHighlightMode('selection')
   }
 
@@ -94,6 +93,15 @@ app.on('ready', async () => {
 
   tray.on('click', onTrayClick)
   tray.on('right-click', onTrayRightClick)
+
+  ipcMain.on('show-menu', () => {
+    trayMenu.getDefault(menubar.window, loggedIn, app).popup(tray.window)
+    mixpanel.track(app, 'Menu: Show Setting')
+  })
+
+  ipcMain.on('loggedIn', (event, args) => {
+    loggedIn = args.status
+  })
 })
 
 app.on('before-quit', (event) => {
