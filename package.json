@@ -1,7 +1,7 @@
 {
   "name": "coountdown",
   "productName": "Coountdown",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Coountdown for macOS",
   "main": "main/index.js",
   "repository": "https://github.com/coountdown/coountdown.git",
@@ -33,6 +33,7 @@
     "dotenv": "6.2.0",
     "electron-is-dev": "^1.0.1",
     "electron-log": "^3.0.1",
+    "electron-updater": "^4.0.6",
     "electron-util": "^0.11.0",
     "fix-path": "^2.1.0",
     "menubar": "^5.2.3",
@@ -78,7 +79,7 @@
     "start": "electron .",
     "format": "prettier --write 'main/**/*.{js,json}'",
     "format-lint": "./node_modules/eslint/bin/eslint.js . --fix",
-    "build": "build"
-    
+    "build": "build",
+    "dist": "electron-builder --publish always"
   }
 }
