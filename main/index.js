@@ -80,8 +80,8 @@ app.on('ready', async () => {
   // Must have Tray
   const menubar = menubarLib(tray, app)
 
-  console.log('App Ready')
-  console.log('Launch on', appLaunchTime.format('LLL'))
+  // console.log('App Ready')
+  // console.log('Launch on', appLaunchTime.format('LLL'))
   const onTrayRightClick = event => {
     // Toggle window
     if (menubar.window.isVisible()) {
