@@ -78,7 +78,7 @@
     "start": "electron .",
     "format": "prettier --write 'main/**/*.{js,json}'",
     "format-lint": "./node_modules/eslint/bin/eslint.js . --fix",
-    "build": "build"
-    
+    "build": "build",
+    "dist": "electron-builder --publish always"
   }
 }
