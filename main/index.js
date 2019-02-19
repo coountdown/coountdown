@@ -17,6 +17,7 @@ const mixpanel = require('./libs/mixpanel')
 const updater = require('./libs/update')
 const menubarLib = require('./libs/menubar')
 const trayMenu = require('./libs/trayMenu')
+const noti = require('./libs/notification')
 
 // Setup env before require config file
 require('dotenv').config()
@@ -70,6 +71,7 @@ app.on('ready', async () => {
   electronUtil.enforceMacOSAppLocation()
   updater(app)
   mixpanel.track(app, 'Launch App')
+  noti('React', `Body ${process.env.REACT_HELLO}`)
 
   try {
     tray = new Tray(resolveRootPath('./main/static/tray/iconTemplate.png'))
