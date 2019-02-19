@@ -32,8 +32,8 @@ module.exports = (app) => {
     const onDeviceVersion = app.getVersion()
     const versionDiffType = semver.diff(newVersion, onDeviceVersion)
 
-    if (versionDiffType === 'major' || versionDiffType === 'minor') {
-      notification(app.getName(), 'Update available', () => {
+    if (versionDiffType !== 'path') {
+      notification(app.getName(), 'Update available', true, () => {
         autoUpdater.quitAndInstall()
       })
     }

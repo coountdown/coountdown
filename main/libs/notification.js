@@ -1,11 +1,12 @@
 const { Notification } = require('electron')
 
 module.exports = (
-  title, body, onClick,
+  title, body, silent, onClick,
 ) => {
   const notification = new Notification({
     title,
     body,
+    silent,
   })
 
   if (onClick) {
