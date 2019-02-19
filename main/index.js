@@ -17,6 +17,7 @@ const mixpanel = require('./libs/mixpanel')
 const updater = require('./libs/update')
 const menubarLib = require('./libs/menubar')
 const trayMenu = require('./libs/trayMenu')
+const notification = require('./libs/notification')
 
 // Setup env before require config file
 require('dotenv').config()
@@ -50,6 +51,7 @@ if (isDev && electronUtil.is.macos) {
 
 // Process Cycle
 app.on('ready', async () => {
+  notification(`New version ${app.getVersion()}`, 'For testing notifaction on canary')
   // Checking internet connection
   onlineStatusWindow = new BrowserWindow({
     width: 0,
