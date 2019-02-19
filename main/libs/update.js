@@ -7,6 +7,11 @@ const mixpanel = require('../libs/mixpanel')
 const notification = require('../libs/notification')
 
 const updateApp = async () => {
+  if (process.env.CONNECTION === 'offline') {
+    setTimeout(updateApp, 3600000)
+    return
+  }
+
   try {
     await autoUpdater.checkForUpdates()
   } catch (err) {
@@ -15,23 +20,24 @@ const updateApp = async () => {
 }
 
 module.exports = (app) => {
+  const isCanary = app.getVersion().includes('canary')
+  if (isCanary) {
+    console.log('canary version')
+    return
+  }
+
   autoUpdater.logger = log
   autoUpdater.logger.transports.file.level = 'info'
   autoUpdater.logger.transports.file.format = '{h}:{i}:{s}:{ms} {text}'
-  autoUpdater.logger.info('Start update process..')
+  autoUpdater.logger.info('Intial update..')
 
   autoUpdater.on('error', (error) => {
     Sentry.captureException(error)
   })
 
-  autoUpdater.on('update-not-available', () => {
-    mixpanel.track(app, 'Update Not Available')
-  })
-
   autoUpdater.on('update-downloaded', ({ version }) => {
     const onDeviceVersion = app.getVersion()
     const versionDiffType = semver.diff(version, onDeviceVersion)
-    mixpanel.track(app, 'Checking', { diff: versionDiffType })
 
     if (versionDiffType !== 'path') {
       notification(app.getName(), 'Update available', true, () => {
@@ -39,7 +45,7 @@ module.exports = (app) => {
       })
     }
 
-    mixpanel.track(app, 'Update Download', { new_version: version })
+    mixpanel.track(app, 'Update Download')
   })
 
   if (!isDev) {
