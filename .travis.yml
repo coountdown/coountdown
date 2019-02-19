@@ -1,17 +1,17 @@
 language: node_js
 os: osx
 node_js:
-- '10'
+  - '10'
 env:
   matrix:
-  - secure: oxxvBsY0YT0h+4aHNQPbZ3ZgIQdsdowA282UEgQcs0QHwgCioQaiTTdSTzZ3vo+PkRXKUZ89MfiwGtBe38BKQBcjvqRvyKYIekmpXRNH4hh78MqEjXlnFlI9f68RO8pyDDWhD0y1r43ZCBxf6JCW10dJDWxWRUoD+yH3k+MaJC09cYYG4TYRQyvEbQHpxY8ilD2zTI6dqhK+3cNCGmS0R1jOOAL92Siw1wmIB8IOyAgw09istGRLZ4pVybUmrSXqrKQPftQZYvgQnHIyu7vk1Bqj1gKwibNAHuCKkXvAEDyZEqAkZKfhHO/VPAiRagA1WEAT9f35gDPfZi4c6fY1stFTAZVVqGgIEL4wAj0jHMsUZrEqjjGSxIddhlKg3FZ1p2ESspRS8FZh1qZxgHMG9qIuzXUdf5t/2+0XnPp1Enu2Oox1LPaKk9vea6XUohYynd7UNmMoKotnbCXNbxZgxTSekcBVaT0h4aDANpwJ/akWZ/iWD7kP25wH05NDT1IX4VNiSRYwxDUR+JvIL5sT9tEyYcCc/++1RVaob/sSfQ31O7QJlSlsi+bIGpAaCilfHr0VFTECkAlsX88dBz5VbeNVJ5/3wiyanUbeEuvm/aBWa0TC0WT/5EZVMA1B/0WvuWZPm150tp29d/wA7Rq/FlU9jCknP1+V8l7DV7xXKe8=
+  - secure: QRE3RGZDAHk5jwncMzl19B8yIryrHlvEgx5aZ4whDR35QyEpM7NmiErzEKw04wWn8HHHwo9+G8pyoizBtNPDueu521dZTR4UX206sUjXsGNB32cIWSudEy/Kl1gFh4uHEW84IVKl5uufLQVOwuBWdwGyNtJv2NAxu97G2/nWhgm/nyOXL5p28etXb2mvrWFNXsmWtGPPcr6ZRVLqAT+VYLOwOlHpF3YdvNnUEskdGamFrOHLfJBqVfknmEvenaQy+k51C4WOGCVztPbEr5S6uq9/h3UbN1FuRlGOX9OSCla89KGj4efGjhLbm9EnFtoZYF0ylGMQRz7IQasr1VKinyaP7e2voJZCIeRfyl9RhlU+KsAS7TXf70HSXZ5x29KcXW5jtVtVKyBPGTF2g0BEXG6xvSrALetbArE3f4Fo8NUCdy7+dHBtNFhqTBsoTfmkZHbplxMYFR6++ZhFafekq8XqZDXYBeTZLQWqkCIYoHRdql+9u7FehlGyQou139FheqWqMtQbXIDaMk6IBMxheSpYfq6z0cMIvbNhlnxpx528Zy+0TnMU+x24IsvbUENElgvHgkPCp4q8B2astMRHYbTHeTkv9B5GSprM/mBilwj20OiHnW28ORoOgAtV6XEG9NE76JmMAc4ThgkxWWKIzRnGlSn9xRnxZuVS21w+S5k=
 matrix:
   fast_finish: true
 cache:
   yarn: true
   directories:
-  - node_modules
-  - "$HOME/.cache/electron"
-  - "$HOME/.cache/electron-builder"
+    - node_modules
+    - "$HOME/.cache/electron"
+    - "$HOME/.cache/electron-builder"
 script:
-- yarn dist
+  - yarn dist
