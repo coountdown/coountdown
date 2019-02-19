@@ -3,7 +3,7 @@ const {
   BrowserWindow,
   Tray,
   ipcMain,
-  globalShortcut
+  globalShortcut,
 } = require('electron')
 const { resolve: resolveRootPath } = require('app-root-path')
 const Sentry = require('@sentry/node')
@@ -17,6 +17,7 @@ const mixpanel = require('./libs/mixpanel')
 const updater = require('./libs/update')
 const menubarLib = require('./libs/menubar')
 const trayMenu = require('./libs/trayMenu')
+const notification = require('./libs/notification')
 
 // Setup env before require config file
 require('dotenv').config()
@@ -29,6 +30,7 @@ fixPath()
 console.log(`On ${isDev ? 'development' : 'production'} mode.`)
 console.log(`WEB: ${config.WEB_URL}`)
 console.log(`APP: ${config.APP_URL}`)
+console.log('Verison: ', app.getVersion())
 
 // Constants
 let onlineStatusWindow
@@ -49,15 +51,16 @@ if (isDev && electronUtil.is.macos) {
 
 // Process Cycle
 app.on('ready', async () => {
+  notification(`New version ${app.getVersion()}`, 'For testing notifaction on canary')
   // Checking internet connection
   onlineStatusWindow = new BrowserWindow({
     width: 0,
     height: 0,
-    show: false
+    show: false,
   })
 
   onlineStatusWindow.loadURL(
-    `file://${resolveRootPath('./main/static/pages/online-status.html')}`
+    `file://${resolveRootPath('./main/static/pages/online-status.html')}`,
   )
 
   // Update internet connection
@@ -82,7 +85,7 @@ app.on('ready', async () => {
 
   // console.log('App Ready')
   // console.log('Launch on', appLaunchTime.format('LLL'))
-  const onTrayRightClick = event => {
+  const onTrayRightClick = (event) => {
     // Toggle window
     if (menubar.window.isVisible()) {
       menubar.window.hide()
@@ -94,7 +97,7 @@ app.on('ready', async () => {
     tray.setHighlightMode('selection')
   }
 
-  const onTrayClick = event => {
+  const onTrayClick = (event) => {
     if (event.ctrlKey) {
       onTrayRightClick(event)
     }
@@ -130,8 +133,8 @@ app.on('ready', async () => {
       width: 1200,
       height: 500,
       webPreferences: {
-        devTools: isDev
-      }
+        devTools: isDev,
+      },
     })
 
     twitterLoginWindow.on('closed', () => {
@@ -153,7 +156,7 @@ app.on('ready', async () => {
   })
 })
 
-app.on('before-quit', event => {
+app.on('before-quit', (event) => {
   if (!isQuit && process.env.CONNECTION === 'online') {
     const appQuitTime = moment()
     const durationTime = appQuitTime.diff(appLaunchTime)
@@ -167,7 +170,7 @@ app.on('before-quit', event => {
       app,
       'Quit App',
       { session_time_minutes: sessionTimeMinutes },
-      () => app.quit()
+      () => app.quit(),
     )
   }
 })
