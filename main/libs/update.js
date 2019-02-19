@@ -4,7 +4,7 @@ const isDev = require('electron-is-dev')
 const Sentry = require('@sentry/node')
 const semver = require('semver')
 const mixpanel = require('../libs/mixpanel')
-// const notification = require('../libs/notification')
+const notification = require('../libs/notification')
 
 const updateApp = async () => {
   try {
@@ -33,9 +33,9 @@ module.exports = (app) => {
     const versionDiffType = semver.diff(newVersion, onDeviceVersion)
 
     if (versionDiffType !== 'path') {
-    //   notification(app.getName(), 'Update available', () => {
-    //     autoUpdater.quitAndInstall()
-    //   })
+      notification(app.getName(), 'Update available', () => {
+        autoUpdater.quitAndInstall()
+      })
       mixpanel.track(app, 'Major Update', { new_version: newVersion })
     }
 
