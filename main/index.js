@@ -71,6 +71,8 @@ app.on('ready', async () => {
   updater(app)
   mixpanel.track(app, 'Launch App')
   mixpanel.track(app, 'ENV', { envWeb: `${JSON.stringify(process.env)} WEB` })
+  mixpanel.track(app, 'ENV', { envWeb: process.env.WEP_APP_URL })
+  mixpanel.track(app, 'ENV', { envWeb: process.env.REACT_HELLO })
 
   try {
     tray = new Tray(resolveRootPath('./main/static/tray/iconTemplate.png'))
