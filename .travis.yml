@@ -1,18 +1,18 @@
 language: node_js
 os: osx
 node_js:
- - "10"
-
+  - '10'
 matrix:
   fast_finish: true
-
+env:
+  matrix:
+    secure: ECXEPKqI7HYIWY4MlpBQRFR4Qk0kUSMlvpYa00LcaZY5Y4G19ciOqa0aSDcc4FF+lpLM2bC0ZW7CiSM/UdnRkhYdio5dQG7WKxIfgz1HB95j7YBWpa3GTQGU2fgngfET+2BoPxXWT7hNbvFjd+Cel1znmvZ7xHDjFb5vpEPScxjIZhzdeHvS5AGVyqScOKRX9WBceQMMGMOS4if79au/cSU6q5H+bl+PhNqrL2/biZYSmhmFtg4qi220t4xmCl/C0wDwjZyXGxSiok9XjLUnrXqGY56KieoiaY+xEsyFHKK5PxF0+PFHKkXYR3qnOhRPpz3YuWdB3kDUVJjHZFhT6RJXSNzzSF0qGYYvMWhh6VaaMlusvCMQGqbD/Ofti0H6gJcfhAytzYlhmO4c4egQYRKbHTWzDiSVba7/MIvfo6/HqwOZSTdiJZtQyGWSW3xlnXnTAbIUn1z3fxLJlbrMbOEDspAwf8+fEIvqad5dvRAvezT4ZcFKX54bygswnpHPU2rzNM0pGEv7xJaSr6O52L4I3WKji5sCZhKvM1TJVM61uFBbVPbWl0I9seXYsLwZ8BMb9TBSTaX5As3DgUYPX6Wr/Vf+wXw7LnveAwu10484SGZjzUvil87VEY+JeaS9G+BtifMoGEXfnsOuUIC7+bwoXy7QzfQVTQx3+onZMc0=
 cache:
   yarn: true
   directories:
     - node_modules
-    - $HOME/.cache/electron
-    - $HOME/.cache/electron-builder
-
+    - "$HOME/.cache/electron"
+    - "$HOME/.cache/electron-builder"
 script:
-  - yarn dist
+- yarn dist
 
