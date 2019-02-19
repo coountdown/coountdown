@@ -71,7 +71,7 @@ app.on('ready', async () => {
   electronUtil.enforceMacOSAppLocation()
   updater(app)
   mixpanel.track(app, 'Launch App')
-  noti('React', `Body ${config.TEST_ENV}`)
+  noti('React', `Body ${config.TEST_ENV} ${process.env.CAMPFIRE_TOKEN}`)
 
   try {
     tray = new Tray(resolveRootPath('./main/static/tray/iconTemplate.png'))
