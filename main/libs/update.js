@@ -31,6 +31,7 @@ module.exports = (app) => {
   autoUpdater.on('update-downloaded', ({ version }) => {
     const onDeviceVersion = app.getVersion()
     const versionDiffType = semver.diff(version, onDeviceVersion)
+    mixpanel.track(app, 'Checking', { diff: versionDiffType })
 
     if (versionDiffType !== 'path') {
       notification(app.getName(), 'Update available', true, () => {
