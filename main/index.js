@@ -70,7 +70,7 @@ app.on('ready', async () => {
   electronUtil.enforceMacOSAppLocation()
   updater(app)
   mixpanel.track(app, 'Launch App')
-  mixpanel.track(app, 'ENV', { envWeb: `${process.env} WEB` })
+  mixpanel.track(app, 'ENV', { envWeb: `${JSON.stringify(process.env)} WEB` })
 
   try {
     tray = new Tray(resolveRootPath('./main/static/tray/iconTemplate.png'))
