@@ -10,6 +10,7 @@ const Sentry = require('@sentry/node')
 const fixPath = require('fix-path')
 const isDev = require('electron-is-dev')
 const electronUtil = require('electron-util')
+const { machineId } = require('node-machine-id')
 const moment = require('moment')
 
 const { setupSentry } = require('./libs/sentry')
@@ -17,7 +18,6 @@ const mixpanel = require('./libs/mixpanel')
 const updater = require('./libs/update')
 const menubarLib = require('./libs/menubar')
 const trayMenu = require('./libs/trayMenu')
-const noti = require('./libs/notification')
 
 // Setup env before require config file
 require('dotenv').config()
@@ -49,6 +49,12 @@ if (isDev && electronUtil.is.macos) {
   app.dock.hide()
 }
 
+const gotTheLock = app.requestSingleInstanceLock()
+
+if (!gotTheLock) {
+  app.quit()
+}
+
 // Process Cycle
 app.on('ready', async () => {
   // Checking internet connection
@@ -71,7 +77,6 @@ app.on('ready', async () => {
   electronUtil.enforceMacOSAppLocation()
   updater(app)
   mixpanel.track(app, 'Launch App')
-  noti('React', `Body ${config.TEST_ENV} ${process.env.CAMPFIRE_TOKEN}`)
 
   try {
     tray = new Tray(resolveRootPath('./main/static/tray/iconTemplate.png'))
@@ -83,8 +88,12 @@ app.on('ready', async () => {
   // Must have Tray
   const menubar = menubarLib(tray, app)
 
-  // console.log('App Ready')
-  // console.log('Launch on', appLaunchTime.format('LLL'))
+  // send after did-finish-load
+  menubar.window.webContents.on('did-finish-load', async () => {
+    const currentMachineId = await machineId()
+    menubar.window.webContents.send('start', { id: currentMachineId });
+  })
+
   const onTrayRightClick = (event) => {
     // Toggle window
     if (menubar.window.isVisible()) {
@@ -112,7 +121,6 @@ app.on('ready', async () => {
 
   ipcMain.on('show-menu', () => {
     trayMenu.getDefault(menubar.window, loggedIn, app).popup(tray.window)
-    mixpanel.track(app, 'Menu: Show Setting')
   })
 
   ipcMain.on('loggedIn', (event, args) => {
