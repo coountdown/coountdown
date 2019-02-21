@@ -19,7 +19,7 @@ module.exports = {
         label: 'Support',
         click() {
           try {
-            mixpanel.track(app, 'Menu: Open Support')
+            mixpanel.track(app, 'Menu: Support')
             shell.openExternal(config.WEB_URL)
           } catch (err) {
             Sentry.captureException(err)
@@ -42,7 +42,6 @@ module.exports = {
         click() {
           try {
             window.webContents.send('logout');
-            mixpanel.track(app, 'Log out')
           } catch (err) {
             Sentry.captureException(err)
           }
