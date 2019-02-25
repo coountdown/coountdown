@@ -1,7 +1,7 @@
 {
   "name": "coountdown",
   "productName": "Coountdown",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Coountdown for macOS",
   "main": "main/index.js",
   "repository": "https://github.com/coountdown/coountdown.git",
@@ -59,7 +59,7 @@
   },
   "build": {
     "buildVersion": "0",
-    "appId": "com.coountdown.app",
+    "appId": "com.coountdown.desktop",
     "mac": {
       "category": "public.app-category.productivity",
       "icon": "main/static/icons/icon.icns",
