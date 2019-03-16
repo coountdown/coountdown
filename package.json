@@ -1,7 +1,7 @@
 {
   "name": "coountdown",
   "productName": "Coountdown",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "Coountdown for macOS",
   "main": "main/index.js",
   "repository": "https://github.com/coountdown/coountdown.git",
@@ -58,13 +58,16 @@
     }
   },
   "build": {
+    "productName": "Coountdown",
+    "artifactName": "Coountdown.${ext}",
     "buildVersion": "0",
     "appId": "com.coountdown.desktop",
     "mac": {
       "category": "public.app-category.productivity",
       "icon": "main/static/icons/icon.icns",
       "target": [
-        "zip"
+        "zip",
+        "dmg"
       ],
       "extendInfo": {
         "LSUIElement": 1,
