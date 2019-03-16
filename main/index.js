@@ -17,8 +17,8 @@ const mixpanel = require('./libs/mixpanel')
 
 // Setup env before require config file
 // eslint-disable-next-line import/order
-const dotEnv = require('dotenv').config()
-const config = require('../config').getEnv(dotEnv.parsed)
+require('dotenv').config()
+const config = require('../config')
 
 // Fix path process
 fixPath()

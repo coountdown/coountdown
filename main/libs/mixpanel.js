@@ -2,9 +2,7 @@ const os = require('os')
 const Mixpanel = require('mixpanel')
 const { machineId } = require('node-machine-id')
 const moment = require('moment')
-
-const dotEnv = require('dotenv').config()
-const config = require('../../config').getEnv(dotEnv.parsed)
+const config = require('../../config')
 
 const mixpanel = Mixpanel.init(config.MIXPANEL_TOKEN)
 
