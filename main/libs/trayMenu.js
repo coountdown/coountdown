@@ -1,12 +1,13 @@
 const { Menu, shell } = require('electron')
-const Sentry = require('@sentry/node');
+const Sentry = require('@sentry/node')
 const mixpanel = require('../libs/mixpanel')
 const dialog = require('../libs/dialog')
 const config = require('../../config')
 
-
 module.exports = {
   getDefault: (window, loggedIn, app) => {
+    const { openAtLogin } = app.getLoginItemSettings()
+
     let menuTemplate = []
     menuTemplate = [
       {
@@ -30,6 +31,20 @@ module.exports = {
         type: 'separator',
       },
       {
+        label: openAtLogin ? 'Disable: Launch at login' : 'Enable: Launch at login',
+        click() {
+          try {
+            app.setLoginItemSettings({
+              openAtLogin: !openAtLogin,
+            })
+
+            mixpanel.track(app, 'Menu: Open at Login', { openAtLogin: !openAtLogin })
+          } catch (err) {
+            Sentry.captureException(err)
+          }
+        },
+      },
+      {
         role: 'quit',
         accelerator: 'CmdOrCtrl+Q',
       },
@@ -41,7 +56,7 @@ module.exports = {
         type: 'normal',
         click() {
           try {
-            window.webContents.send('logout');
+            window.webContents.send('logout')
           } catch (err) {
             Sentry.captureException(err)
           }
