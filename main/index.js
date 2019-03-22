@@ -8,6 +8,7 @@ const isDev = require('electron-is-dev')
 const electronUtil = require('electron-util')
 const { machineId } = require('node-machine-id')
 const moment = require('moment')
+const firstRun = require('first-run')
 
 const { setupSentry } = require('./libs/sentry')
 const updater = require('./libs/update')
@@ -44,6 +45,10 @@ app.setName(config.APP_NAME)
 // Hide dock icon (In production mode, it's setup on package.json. [key: LSUIElement])
 if (isDev && electronUtil.is.macos) {
   app.dock.hide()
+}
+
+if (firstRun()) {
+  app.setLoginItemSettings({ openAtLogin: true })
 }
 
 const gotTheLock = app.requestSingleInstanceLock()
