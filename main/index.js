@@ -1,5 +1,5 @@
 const {
-  app, BrowserWindow, Tray, ipcMain, globalShortcut,
+  app, BrowserWindow, Tray, ipcMain, globalShortcut, Notification,
 } = require('electron')
 const { resolve: resolveRootPath } = require('app-root-path')
 const Sentry = require('@sentry/node')
@@ -14,7 +14,10 @@ const { setupSentry } = require('./libs/sentry')
 const updater = require('./libs/update')
 const menubarLib = require('./libs/menubar')
 const trayMenu = require('./libs/trayMenu')
+const store = require('./libs/store')
 const mixpanel = require('./libs/mixpanel')
+
+const notificationCheckup = require('./libs/notificationCheckup')
 
 // Setup env before require config file
 // eslint-disable-next-line import/order
@@ -40,6 +43,7 @@ let alreadyGetUser = false
 const appLaunchTime = moment()
 
 setupSentry(app)
+store.setupNoti()
 app.setName(config.APP_NAME)
 
 // Hide dock icon (In production mode, it's setup on package.json. [key: LSUIElement])
@@ -92,6 +96,7 @@ app.on('ready', async () => {
   menubar.window.webContents.on('did-finish-load', async () => {
     const currentMachineId = await machineId()
     menubar.window.webContents.send('start', { id: currentMachineId })
+    notificationCheckup(menubar.window)
   })
 
   const onTrayRightClick = (event) => {
@@ -161,6 +166,29 @@ app.on('ready', async () => {
       Sentry.captureException(err)
     }
     menubar.window.show()
+  })
+
+  ipcMain.on('notiNow', (event, args) => {
+    try {
+      const haveNoti = store.get('noti')
+      if (!haveNoti) {
+        return
+      }
+
+      const notification = new Notification({
+        title: 'Coountdown',
+        body: args.message,
+      })
+
+      notification.on('click', () => {
+        mixpanel.track(app, 'View Notification')
+        menubar.window.show()
+      })
+
+      notification.show()
+    } catch (err) {
+      Sentry.captureException(err)
+    }
   })
 })
 

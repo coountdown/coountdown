@@ -1,7 +1,7 @@
 {
   "name": "coountdown",
   "productName": "Coountdown",
-  "version": "1.2.2",
+  "version": "1.2.3-canary.0",
   "description": "Coountdown for macOS",
   "main": "main/index.js",
   "repository": "https://github.com/coountdown/coountdown.git",
@@ -33,6 +33,7 @@
     "dotenv": "6.2.0",
     "electron-is-dev": "^1.0.1",
     "electron-log": "^3.0.1",
+    "electron-store": "^3.0.0",
     "electron-updater": "^4.0.6",
     "electron-util": "^0.11.0",
     "first-run": "^1.2.0",
@@ -40,6 +41,7 @@
     "menubar": "^5.2.3",
     "mixpanel": "^0.10.1",
     "moment": "^2.24.0",
+    "ms": "^2.1.1",
     "node-machine-id": "^1.1.10",
     "semver": "^5.6.0"
   },
