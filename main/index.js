@@ -112,7 +112,7 @@ app.on('ready', async () => {
   }
 
   const onTrayClick = (event) => {
-    menubar.window.webContents.send('active')
+    menubar.window.reload()
     if (event.ctrlKey) {
       onTrayRightClick(event)
     }
