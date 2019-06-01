@@ -1,7 +1,7 @@
 {
   "name": "coountdown",
   "productName": "Coountdown",
-  "version": "1.2.5",
+  "version": "1.2.6-canary",
   "description": "Coountdown for macOS",
   "main": "main/index.js",
   "repository": "https://github.com/coountdown/coountdown.git",
