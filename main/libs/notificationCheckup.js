@@ -1,9 +1,12 @@
 const ms = require('ms')
 const Sentry = require('@sentry/node')
 
+let timer
+
 const checkup = async (window) => {
   try {
-    setTimeout(() => checkup(window), ms('4h'))
+    clearTimeout(timer)
+    timer = setTimeout(() => checkup(window), ms('4h'))
     window.webContents.send('checkNotification')
   } catch (err) {
     Sentry.captureException(err)
@@ -12,7 +15,7 @@ const checkup = async (window) => {
 
 module.exports = (window) => {
   try {
-    setTimeout(() => checkup(window), ms('4h'))
+    timer = setTimeout(() => checkup(window), ms('4h'))
   } catch (err) {
     Sentry.captureException(err)
   }
