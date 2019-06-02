@@ -2,6 +2,7 @@ const ms = require('ms')
 const Sentry = require('@sentry/node')
 
 let timer
+let times = 0
 
 const checkup = async (window) => {
   try {
@@ -15,7 +16,10 @@ const checkup = async (window) => {
 
 module.exports = (window) => {
   try {
-    timer = setTimeout(() => checkup(window), ms('4h'))
+    if (times === 0) {
+      times = 1
+      timer = setTimeout(() => checkup(window), ms('4h'))
+    }
   } catch (err) {
     Sentry.captureException(err)
   }
